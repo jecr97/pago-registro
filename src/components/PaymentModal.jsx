@@ -25,6 +25,8 @@ export default function PaymentModal({
   const modalRef  = useRef(null)
   const bsModal   = useRef(null)
   const onHideRef = useRef(onHide)
+  const onSuccessRef = useRef(onSuccess)
+  const pendingSuccess = useRef(null)
 
   const [method,     setMethod]  = useState('card')
   const [cardNumber, setCardNum] = useState('')
@@ -34,14 +36,35 @@ export default function PaymentModal({
   const [processing, setProc]    = useState(false)
   const [oxxoRef,    setOxxo]    = useState('')
 
-  // Keep onHide ref current
+  // Keep callbacks refs current
   useEffect(() => { onHideRef.current = onHide }, [onHide])
+  useEffect(() => { onSuccessRef.current = onSuccess }, [onSuccess])
 
   // Init Bootstrap Modal once
   useEffect(() => {
     const el = modalRef.current
     bsModal.current = new Modal(el, { backdrop: 'static', keyboard: false })
-    const handleHidden = () => onHideRef.current()
+    const handleHidden = () => {
+      // Limpiar TODOS los estilos que Bootstrap agrega
+      document.body.classList.remove('modal-open')
+      document.body.style.overflow = ''
+      document.body.style.paddingRight = ''
+
+      // Remover backdrop si existe
+      const backdrop = document.querySelector('.modal-backdrop')
+      if (backdrop) backdrop.remove()
+
+      // Primero notificar que el modal se ocultó
+      try { onHideRef.current() } catch (e) { /* ignore */ }
+
+      // Si hay un pago pendiente, notificar éxito ahora (después del hide)
+      if (pendingSuccess.current) {
+        try {
+          onSuccessRef.current?.(pendingSuccess.current)
+        } catch (e) { /* ignore */ }
+        pendingSuccess.current = null
+      }
+    }
     el.addEventListener('hidden.bs.modal', handleHidden)
     return () => {
       el.removeEventListener('hidden.bs.modal', handleHidden)
@@ -74,7 +97,11 @@ export default function PaymentModal({
     setProc(true)
     setTimeout(() => {
       setProc(false)
-      onSuccess(method === 'card' ? 'Tarjeta de crédito/débito' : 'OXXO')
+      // En lugar de notificar éxito inmediatamente, guardamos el resultado
+      // y cerramos el modal; la notificación de éxito se hará cuando
+      // el evento 'hidden.bs.modal' confirme que el modal ya está oculto.
+      pendingSuccess.current = method === 'card' ? 'Tarjeta de crédito/débito' : 'OXXO'
+      bsModal.current?.hide()
     }, 2200)
   }
 

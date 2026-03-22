@@ -1,0 +1,820 @@
+/* ============================================
+   Torneo de Fútbol 2026 — Landing Page
+   Estilos profesionales deportivos
+   ============================================ */
+
+/* === Variables & Base === */
+:root {
+  --primary: #0C3354;
+  --primary-light: #145085;
+  --primary-dark: #061a2e;
+  --accent: #F5A623;
+  --accent-light: #FFD580;
+  --green: #198754;
+  --green-light: #d1e7dd;
+  --gradient:linear-gradient(135deg, #0C3354, #1a5276);
+  --gradient-accent: linear-gradient(135deg, #F5A623, #e67e22);
+  --shadow-sm: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-md: 0 4px 24px rgba(0,0,0,0.12);
+  --shadow-lg: 0 12px 48px rgba(0,0,0,0.18);
+  --radius: 14px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+
+body {
+  font-family: 'Poppins', system-ui, -apple-system, sans-serif;
+  background: #f8f9fb;
+  color: #333;
+  overflow-x: hidden;
+}
+
+.py-6 { padding-top: 5rem; padding-bottom: 5rem; }
+
+.bg-light-custom { background: #f1f4f8; }
+
+.text-purple { color: #7c3aed !important; }
+.text-orange { color: #e67e22 !important; }
+
+/* === Animaciones === */
+@keyframes fadeSlideUp {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50%      { transform: translateY(-18px) rotate(8deg); }
+}
+@keyframes pulse {
+  0%, 100% { transform: scale(1); }
+  50%      { transform: scale(1.08); }
+}
+@keyframes spin-slow {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-in {
+  animation: fadeSlideUp 0.6s ease-out both;
+}
+
+.brand-spin {
+  display: inline-block;
+  animation: spin-slow 6s linear infinite;
+}
+
+/* === NAVBAR === */
+#mainNav {
+  background: rgba(12, 51, 84, 0.92);
+  backdrop-filter: blur(12px);
+  transition: all 0.3s ease;
+  padding: 12px 0;
+}
+#mainNav.scrolled {
+  background: rgba(12, 51, 84, 0.98);
+  padding: 6px 0;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+}
+#mainNav .navbar-brand {
+  font-size: 1.4rem;
+  letter-spacing: 1px;
+}
+#mainNav .nav-link {
+  font-weight: 500;
+  font-size: 0.92rem;
+  padding: 8px 16px;
+  border-radius: 8px;
+  transition: all 0.3s;
+  margin: 0 2px;
+}
+#mainNav .nav-link:hover,
+#mainNav .nav-link.active {
+  background: rgba(255,255,255,0.12);
+  color: var(--accent) !important;
+}
+.btn-nav-cta {
+  background: var(--accent) !important;
+  color: var(--primary-dark) !important;
+  font-weight: 700 !important;
+  border-radius: 50px !important;
+  padding: 8px 20px !important;
+}
+.btn-nav-cta:hover {
+  background: var(--accent-light) !important;
+  transform: scale(1.05);
+}
+
+/* === HERO === */
+.hero-section {
+  position: relative;
+  min-height: 100vh;
+  background:
+    linear-gradient(135deg, rgba(6,26,46,0.95) 0%, rgba(12,51,84,0.85) 40%, rgba(26,82,118,0.8) 100%),
+    repeating-linear-gradient(90deg, transparent, transparent 100px, rgba(255,255,255,0.02) 100px, rgba(255,255,255,0.02) 101px),
+    repeating-linear-gradient(0deg, transparent, transparent 100px, rgba(255,255,255,0.02) 100px, rgba(255,255,255,0.02) 101px);
+  overflow: hidden;
+}
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at 20% 50%, rgba(245,166,35,0.15) 0%, transparent 50%),
+              radial-gradient(circle at 80% 30%, rgba(25,135,84,0.1) 0%, transparent 40%);
+}
+.hero-particles {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+.hero-particle {
+  position: absolute;
+  background: rgba(245,166,35,0.3);
+  border-radius: 50%;
+  animation: float 8s ease-in-out infinite;
+}
+.hero-content {
+  animation: fadeSlideUp 0.8s ease-out both;
+  z-index: 2;
+}
+.hero-title {
+  line-height: 1.05;
+  letter-spacing: -1px;
+}
+.fw-900 { font-weight: 900; }
+.text-gradient {
+  background: linear-gradient(90deg, var(--accent), #e74c3c, var(--accent));
+  background-size: 200%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: shimmer 4s linear infinite;
+}
+.hero-subtitle {
+  font-size: 1.15rem;
+  max-width: 540px;
+}
+.animate-badge {
+  animation: fadeIn 1s ease-out 0.3s both;
+}
+.btn-hero {
+  border-radius: 50px;
+  font-size: 1.05rem;
+  transition: all 0.3s;
+}
+.btn-hero:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 30px rgba(245,166,35,0.4) !important;
+}
+.btn-hero-outline {
+  border-radius: 50px;
+  transition: all 0.3s;
+}
+.btn-hero-outline:hover {
+  transform: translateY(-3px);
+  background: rgba(255,255,255,0.1);
+}
+/* Stats */
+.hero-stats {
+  display: flex;
+  gap: 40px;
+  animation: fadeSlideUp 1s ease-out 0.6s both;
+}
+.stat-item { text-align: center; }
+.stat-number {
+  display: block;
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: var(--accent);
+  line-height: 1;
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.6);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+/* Hero ball */
+.hero-ball-wrapper {
+  animation: float 6s ease-in-out infinite;
+}
+.hero-ball {
+  width: 260px;
+  height: 260px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 35%, rgba(255,255,255,0.2), transparent 60%),
+              var(--gradient-accent);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 7rem;
+  color: rgba(255,255,255,0.9);
+  box-shadow: 0 20px 60px rgba(245,166,35,0.3);
+}
+/* Wave */
+.hero-wave {
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+.hero-wave svg { display: block; width: 100%; height: 80px; }
+
+/* === Section headers === */
+.section-tag {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 16px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  margin-bottom: 12px;
+}
+.tag-light {
+  background: rgba(255,255,255,0.15);
+  border: 1px solid rgba(255,255,255,0.3);
+}
+.section-title {
+  font-size: 2.4rem;
+  font-weight: 800;
+  color: var(--primary-dark);
+  margin-bottom: 8px;
+}
+.section-subtitle {
+  color: #6c757d;
+  font-size: 1.05rem;
+}
+
+/* === Info Cards === */
+.info-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 1px solid #eee;
+  transition: all 0.3s;
+  height: 100%;
+}
+.info-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-md);
+  border-color: var(--primary);
+}
+.info-card-icon {
+  width: 60px; height: 60px;
+  border-radius: 16px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.info-card h5 { font-weight: 700; color: var(--primary-dark); }
+
+/* === Torneo Cards === */
+.torneo-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-sm);
+  border: 2px solid #eee;
+  transition: all 0.4s;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+}
+.torneo-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 4px;
+}
+.torneo-junior::before { background: #3498db; }
+.torneo-profesional::before { background: var(--accent); }
+.torneo-master::before { background: #9b59b6; }
+.torneo-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+.torneo-card.featured {
+  border-color: var(--accent);
+  transform: scale(1.03);
+}
+.torneo-card.featured:hover {
+  transform: scale(1.03) translateY(-8px);
+}
+.torneo-badge {
+  display: inline-block;
+  background: var(--primary);
+  color: #fff;
+  padding: 4px 14px;
+  border-radius: 50px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+.torneo-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+  color: var(--primary);
+}
+.torneo-card h4 { font-weight: 700; color: var(--primary-dark); }
+.torneo-card ul li {
+  padding: 4px 0;
+  text-align: left;
+}
+
+/* === Categorías === */
+.cat-card {
+  background: #fff;
+  border-radius: var(--radius);
+  padding: 2.5rem 2rem;
+  text-align: center;
+  box-shadow: var(--shadow-md);
+  transition: all 0.4s;
+  position: relative;
+  overflow: hidden;
+}
+.cat-card::after {
+  content: '';
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  height: 5px;
+}
+.cat-femenil::after { background: linear-gradient(90deg, #e91e63, #f48fb1); }
+.cat-varonil::after { background: linear-gradient(90deg, #1565c0, #42a5f5); }
+.cat-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+.cat-icon-wrap {
+  width: 80px; height: 80px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+.cat-femenil .cat-icon-wrap { background: #fce4ec; color: #e91e63; }
+.cat-varonil .cat-icon-wrap { background: #e3f2fd; color: #1565c0; }
+.cat-card h3 { font-weight: 800; color: var(--primary-dark); }
+.cat-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  justify-content: center;
+  margin-top: 1.2rem;
+}
+.cat-features span {
+  background: #f0f4f8;
+  padding: 6px 14px;
+  border-radius: 50px;
+  font-size: 0.78rem;
+  font-weight: 500;
+  color: #555;
+}
+
+/* === Premios === */
+.premios-section {
+  background:
+    linear-gradient(135deg, var(--primary-dark) 0%, var(--primary) 60%, var(--primary-light) 100%);
+  position: relative;
+}
+.premio-card {
+  background: rgba(255,255,255,0.07);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255,255,255,0.12);
+  border-radius: var(--radius);
+  padding: 2rem 1.5rem;
+  text-align: center;
+  color: #fff;
+  transition: all 0.4s;
+  height: 100%;
+  position: relative;
+}
+.premio-card:hover {
+  transform: translateY(-10px);
+  background: rgba(255,255,255,0.12);
+}
+.featured-premio {
+  border-color: var(--accent);
+  box-shadow: 0 0 40px rgba(245,166,35,0.2);
+  transform: scale(1.05);
+}
+.featured-premio:hover {
+  transform: scale(1.05) translateY(-10px);
+}
+.premio-crown {
+  position: absolute;
+  top: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--accent);
+  color: var(--primary-dark);
+  width: 40px; height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  animation: pulse 2s ease-in-out infinite;
+}
+.premio-medal {
+  font-size: 4rem;
+  margin-bottom: 0.5rem;
+  line-height: 1;
+}
+.premio-pos {
+  font-weight: 700;
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+.premio-amount {
+  font-size: 2.2rem;
+  font-weight: 900;
+  margin-bottom: 1.2rem;
+  color: var(--accent);
+}
+.premio-amount small { font-size: 0.9rem; opacity: 0.7; }
+.premio-card ul li {
+  padding: 5px 0;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+/* === Promociones === */
+.promo-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s;
+}
+.promo-card:hover {
+  transform: translateY(-6px);
+  box-shadow: var(--shadow-lg);
+}
+.promo-ribbon {
+  position: absolute;
+  top: 20px; right: -35px;
+  background: var(--green);
+  color: #fff;
+  padding: 6px 40px;
+  font-weight: 800;
+  font-size: 0.85rem;
+  transform: rotate(45deg);
+  box-shadow: 0 4px 12px rgba(25,135,84,0.3);
+  z-index: 2;
+}
+.ribbon-hot { background: #e74c3c; }
+.promo-content { padding: 2rem; }
+.promo-icon {
+  width: 60px; height: 60px;
+  border-radius: 50%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+}
+.promo-1 .promo-icon { background: #e8f5e9; color: var(--green); }
+.promo-2 .promo-icon { background: #fce4ec; color: #e74c3c; }
+.promo-card h4 { font-weight: 700; color: var(--primary-dark); }
+.promo-code-box {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f8f9fa;
+  border: 2px dashed #dee2e6;
+  padding: 10px 16px;
+  border-radius: 10px;
+  margin: 1rem 0;
+}
+.promo-code-box code {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: var(--primary);
+  flex: 1;
+  letter-spacing: 1px;
+}
+.promo-price {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  justify-content: center;
+}
+.old-price {
+  text-decoration: line-through;
+  color: #adb5bd;
+  font-size: 1.1rem;
+}
+.new-price {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--green);
+}
+
+/* === Formulario === */
+.form-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+}
+.form-card-header {
+  background: var(--gradient);
+  color: #fff;
+  padding: 1.2rem 1.5rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+.form-card-body {
+  padding: 2rem;
+}
+.form-control:focus,
+.form-select:focus {
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(12,51,84,0.15);
+}
+.price-summary {
+  background: #f8fafb;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  padding: 1.2rem;
+}
+.btn-submit {
+  background: var(--gradient);
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  padding: 14px;
+  font-size: 1.1rem;
+  transition: all 0.3s;
+}
+.btn-submit:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 30px rgba(12,51,84,0.3);
+  background: var(--primary-light);
+}
+
+/* === Modal de Pago === */
+.payment-modal-content {
+  border: none;
+  border-radius: 18px;
+  overflow: hidden;
+}
+.pm-header {
+  background: linear-gradient(135deg, #1a1a2e, #16213e);
+  padding: 1.5rem;
+}
+.pm-body { padding: 1.5rem; }
+.pm-summary {
+  background: #f8f9fa;
+  border-radius: 10px;
+  padding: 12px;
+  margin-bottom: 1rem;
+  border: 1px solid #eee;
+}
+.method-btn {
+  border: 2px solid #dee2e6;
+  border-radius: 10px !important;
+  font-weight: 600;
+  transition: all 0.3s;
+  background: #fff;
+}
+.method-btn.active {
+  border-color: var(--primary);
+  background: var(--primary);
+  color: #fff;
+}
+.method-btn:hover { border-color: var(--primary); }
+
+/* === Confirmación === */
+.success-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 90px; height: 90px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--green-light), #a3cfbb);
+  color: var(--green);
+  font-size: 2.8rem;
+}
+.confirmation-card {
+  background: #fff;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-md);
+  padding: 1.5rem;
+}
+.total-row td {
+  border-top: 2px solid #dee2e6;
+  padding-top: 0.8rem !important;
+}
+
+/* === Simulación de Correo === */
+.email-container {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: var(--shadow-md);
+  overflow: hidden;
+  border: 1px solid #e2e8f0;
+}
+.email-toolbar {
+  background: #f3f4f6;
+  padding: 10px 16px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid #e9ecef;
+}
+.email-dots {
+  display: flex;
+  gap: 6px;
+}
+.email-dots span {
+  width: 12px; height: 12px;
+  border-radius: 50%;
+  display: block;
+}
+.dot-r { background: #ff5f56; }
+.dot-y { background: #ffbd2e; }
+.dot-g { background: #27c93f; }
+.email-header {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+.email-avatar {
+  width: 44px; height: 44px;
+  border-radius: 50%;
+  background: var(--primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.email-subject { font-size: 1.02rem; color: #212529; }
+.email-body { padding: 1.5rem; }
+.email-banner {
+  background: var(--gradient);
+  color: #fff;
+  text-align: center;
+  padding: 1rem;
+  border-radius: 10px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  margin-bottom: 1.5rem;
+}
+.email-greeting {
+  line-height: 1.7;
+  color: #343a40;
+  margin-bottom: 1.5rem;
+}
+.email-summary-box {
+  background: #f8fafb;
+  border: 1px solid #e9ecef;
+  border-radius: 10px;
+  padding: 1.2rem;
+  margin-bottom: 1.5rem;
+}
+.email-qr-section {
+  text-align: center;
+  padding: 1.5rem;
+  background: #fafbfc;
+  border: 1px dashed #dee2e6;
+  border-radius: 10px;
+  margin-bottom: 1.5rem;
+}
+.qr-wrapper {
+  display: inline-block;
+  padding: 12px;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+  border: 1px solid #e9ecef;
+}
+.email-contact {
+  text-align: center;
+  padding: 1rem;
+  background: #f0f4f8;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  color: #6c757d;
+}
+.email-footer {
+  text-align: center;
+  padding: 1rem;
+  background: #f3f4f6;
+  border-top: 1px solid #e9ecef;
+  color: #adb5bd;
+}
+
+/* Demo notice */
+.demo-notice {
+  text-align: center;
+  margin-top: 1.2rem;
+  padding: 0.8rem 1rem;
+  background: #fff3cd;
+  border: 1px solid #ffc107;
+  border-radius: 10px;
+  color: #856404;
+  font-size: 0.88rem;
+}
+
+/* === FOOTER === */
+.site-footer {
+  background: var(--primary-dark);
+  padding: 3rem 0 1.5rem;
+}
+.social-links {
+  display: flex;
+  gap: 10px;
+  margin-top: 1rem;
+}
+.social-links a {
+  width: 38px; height: 38px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+  text-decoration: none;
+}
+.social-links a:hover {
+  background: var(--accent);
+  color: var(--primary-dark);
+  transform: translateY(-3px);
+}
+.footer-links { list-style: none; padding: 0; }
+.footer-links li { margin-bottom: 8px; }
+.footer-links a {
+  color: rgba(255,255,255,0.6);
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.3s;
+}
+.footer-links a:hover { color: var(--accent); }
+
+/* === Processing spinner === */
+.spinner-payment {
+  display: inline-block;
+  width: 20px; height: 20px;
+  border: 3px solid rgba(255,255,255,0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: spin-slow 0.8s linear infinite;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* === Responsive === */
+@media (max-width: 768px) {
+  .hero-title { font-size: 2.6rem; }
+  .hero-stats { gap: 24px; }
+  .stat-number { font-size: 1.6rem; }
+  .section-title { font-size: 1.8rem; }
+  .premio-card.featured-premio { transform: scale(1); }
+  .premio-card.featured-premio:hover { transform: translateY(-8px); }
+  .py-6 { padding-top: 3rem; padding-bottom: 3rem; }
+  .form-card-body { padding: 1.2rem; }
+}
+
+@media (max-width: 576px) {
+  .hero-title { font-size: 2rem; }
+  .hero-stats { flex-wrap: wrap; gap: 16px; }
+  .promo-ribbon { font-size: 0.7rem; padding: 4px 30px; }
+}
+
+/* === Print === */
+@media print {
+  #mainNav, .hero-section, #torneo, #categorias, #premios, #promos, #inscripcion,
+  .site-footer, .demo-notice, .email-toolbar, .btn { display: none !important; }
+  #confirmacion { display: block !important; }
+  .email-container { box-shadow: none; border: 1px solid #ccc; }
+  body { background: #fff; }
+}
